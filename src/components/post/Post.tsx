@@ -2,10 +2,19 @@ import styles from "./Post.module.css"
 import {PostProps} from "../../shared/PostProps.ts";
 import {Comment} from "../comment/Comment.tsx";
 import {Avatar} from "../avatar/Avatar.tsx";
+import {format, formatDistanceToNow} from "date-fns";
+import {ptBR} from "date-fns/locale/pt-BR";
 
-export const Post = ({author, content}: PostProps) => {
+export const Post = ({author, content, publishedAt}: PostProps) => {
 
-    const linkPictureProfile = "http://github.com/eddie-naipes.png"
+    const publishedDateFormatted = format(publishedAt, "dd 'de' MMMM 'às' HH:mm'h'", {
+        locale: ptBR,
+    })
+
+    const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+        locale: ptBR,
+        addSuffix: true,
+    });
 
     return (
         <article className={styles.post}>
@@ -13,21 +22,29 @@ export const Post = ({author, content}: PostProps) => {
                 <div className={styles.author}>
                     <Avatar
                         hasBorder
-                        src={linkPictureProfile}
-                        alt={"Profile icon"}
+                        src={author.avatarUrl}
+                        alt={author.role}
                     />
 
                     <div className={styles.authorInfo}>
-                        <strong>{author}</strong>
-                        <span>Web Developer</span>
+                        <strong>{author.name}</strong>
+                        <span>{author.role}</span>
                     </div>
                 </div>
-                <time title="10 de Outubro às 08:13" dateTime="2023-10-10 08:13:30">Publicado há 1h</time>
+                <time title={publishedDateFormatted}
+                      dateTime={publishedAt.toISOString()}>{publishedDateRelativeToNow}</time>
             </header>
             <div className={styles.content}>
-                <p>{content}</p>
 
-                <a href="#">#abc</a>
+                {content.map((item, i) => (
+                    <p key={i}>
+                        {item.type === "LINK" ? (
+                            <a href="#">#{item.content}</a>
+                        ) : item.type === "PARAGRAPH" ? (
+                            item.content
+                        ) : null}
+                    </p>
+                ))}
             </div>
 
             <form className={styles.commentForm}>
