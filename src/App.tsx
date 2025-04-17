@@ -1,7 +1,7 @@
-import {Post} from "./components/Post.tsx";
 import {Header} from "./components/header/Header.tsx";
 import styles from "./App.module.css"
 import {Sidebar} from "./components/sidebar/Sidebar.tsx";
+import {Post} from "./components/post/Post.tsx";
 
 function App() {
 
