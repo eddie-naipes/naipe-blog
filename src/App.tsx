@@ -2,6 +2,60 @@ import {Header} from "./components/header/Header.tsx";
 import styles from "./App.module.css"
 import {Sidebar} from "./components/sidebar/Sidebar.tsx";
 import {Post} from "./components/post/Post.tsx";
+import {PostProps} from "./shared/PostProps.ts";
+
+
+const posts: PostProps[] = [
+    {
+        id: 1,
+        author: {
+            id: "1",
+            name: "Eddie Dias",
+            role: "Web Developer",
+            avatarUrl: "https://github.com/eddie-naipes.png"
+        },
+        content: [
+            {
+                type: "PARAGRAPH",
+                content: "Fala galera, beleza? 👋"
+            },
+            {
+                type: "PARAGRAPH",
+                content: "Acabei de subir mais um projeto no meu portfólio. É um projeto que fiz no Ignite, onde desenvolvi uma aplicação para acompanhar o consumo de café da Rocketseat."
+            },
+            {
+                type: "LINK",
+                content: "👉 jane.design/doctorcare"
+            }
+        ],
+        publishedAt: new Date("2023-10-10 08:13:30")
+    },
+    {
+        id: 1,
+        author: {
+            id: "1",
+            name: "Eddie Dias",
+            role: "Web Developer",
+            avatarUrl: "https://github.com/eddie-naipes.png"
+        },
+        content: [
+            {
+                type: "PARAGRAPH",
+                content: "Fala galera, beleza? 👋"
+            },
+            {
+                type: "PARAGRAPH",
+                content: "Acabei de subir mais um projeto no meu portfólio. É um projeto que fiz no Ignite, onde desenvolvi uma aplicação para acompanhar o consumo de café da Rocketseat."
+            },
+            {
+                type: "LINK",
+                content: "👉 jane.design/doctorcare"
+            }
+        ],
+        publishedAt: new Date("2023-10-10 08:13:30")
+    },
+]
+
 
 function App() {
 
@@ -12,10 +66,16 @@ function App() {
             <div className={styles.wrapper}>
                 <Sidebar/>
                 <main>
-                    <Post
-                        author={"Eddie Dias"}
-                        content={"Hello World!"}
-                    />
+                    {posts.map(post => {
+                        return (
+                            <Post
+                                id={post.id}
+                                author={post.author}
+                                content={post.content}
+                                publishedAt={post.publishedAt}
+                            />
+                        )
+                    })};
                 </main>
             </div>
 

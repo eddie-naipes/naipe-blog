@@ -1,4 +1,9 @@
+import {AuthorProps} from "./AuthorProps.ts";
+import {ContentProps} from "./ContentProps.ts";
+
 export type PostProps = {
-    author: string
-    content: string
+    id: number
+    author: AuthorProps
+    publishedAt: Date
+    content: ContentProps[];
 }
