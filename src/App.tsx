@@ -3,6 +3,7 @@ import styles from "./App.module.css"
 import {Sidebar} from "./components/sidebar/Sidebar.tsx";
 import {Post} from "./components/post/Post.tsx";
 import {PostProps} from "./shared/PostProps.ts";
+import {uuidv7} from "uuidv7";
 
 
 const posts: PostProps[] = [
@@ -70,6 +71,7 @@ function App() {
                         return (
                             <Post
                                 id={post.id}
+                                key={uuidv7()}
                                 author={post.author}
                                 content={post.content}
                                 publishedAt={post.publishedAt}
