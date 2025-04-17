@@ -4,6 +4,7 @@ import {Sidebar} from "./components/sidebar/Sidebar.tsx";
 import {Post} from "./components/post/Post.tsx";
 import {PostProps} from "./shared/PostProps.ts";
 import {uuidv7} from "uuidv7";
+import {LINK_PICTURE_PROFILE} from "./data/mockConstants.ts";
 
 
 const posts: PostProps[] = [
@@ -13,7 +14,7 @@ const posts: PostProps[] = [
             id: "1",
             name: "Eddie Dias",
             role: "Web Developer",
-            avatarUrl: "https://github.com/eddie-naipes.png"
+            avatarUrl: LINK_PICTURE_PROFILE
         },
         content: [
             {
@@ -37,7 +38,7 @@ const posts: PostProps[] = [
             id: "1",
             name: "Eddie Dias",
             role: "Web Developer",
-            avatarUrl: "https://github.com/eddie-naipes.png"
+            avatarUrl: LINK_PICTURE_PROFILE
         },
         content: [
             {

@@ -3,9 +3,9 @@ import {ThumbsUp, Trash} from "@phosphor-icons/react";
 import {Avatar} from "../avatar/Avatar.tsx";
 import {CommentProps} from "../../shared/CommentProps.ts";
 import * as React from "react";
+import {LINK_PICTURE_PROFILE} from "../../data/mockConstants.ts";
 
 export const Comment = ({content, handleDeleteComment}: CommentProps) => {
-    const linkPictureProfile = "http://github.com/diego3g.png"
 
     function deleteComment(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault()
@@ -15,7 +15,7 @@ export const Comment = ({content, handleDeleteComment}: CommentProps) => {
 
     return (
         <div className={styles.comment}>
-            <Avatar hasBorder={false} src={linkPictureProfile} alt={"Profile icon"}/>
+            <Avatar hasBorder={false} src={LINK_PICTURE_PROFILE} alt={"Profile icon"}/>
             <div className={styles.commentBox}>
                 <div className={styles.commentContent}>
                     <header>
