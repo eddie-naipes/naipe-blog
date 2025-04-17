@@ -4,6 +4,8 @@ import {Comment} from "../comment/Comment.tsx";
 import {Avatar} from "../avatar/Avatar.tsx";
 import {format, formatDistanceToNow} from "date-fns";
 import {ptBR} from "date-fns/locale/pt-BR";
+import {useState} from "react";
+import * as React from "react";
 
 export const Post = ({author, content, publishedAt}: PostProps) => {
 
@@ -15,6 +17,27 @@ export const Post = ({author, content, publishedAt}: PostProps) => {
         locale: ptBR,
         addSuffix: true,
     });
+
+    const [comments, setComments] = useState(["Muito bacana"])
+    const [newCommentText, setNewCommentText] = useState("")
+
+
+    function handleCreateNewComment(event: React.FormEvent) {
+        event.preventDefault()
+        setComments([...comments, newCommentText])
+        setNewCommentText("")
+    }
+
+    function handleCommentChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
+        event.preventDefault()
+        setNewCommentText(event.target.value)
+    }
+
+    function handleDeleteComment(commentDelete: string) {
+        const newCList = comments.filter((comment) => comment !== commentDelete);
+        setComments([...newCList])
+    }
+
 
     return (
         <article className={styles.post}>
@@ -47,18 +70,25 @@ export const Post = ({author, content, publishedAt}: PostProps) => {
                 ))}
             </div>
 
-            <form className={styles.commentForm}>
+            <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
                 <strong>Deixe seu feedback</strong>
                 <textarea
+                    name={"comment"}
                     placeholder={"Deixe um comentário"}
+                    onChange={handleCommentChange}
+                    value={newCommentText}
                 />
                 <button type={"submit"}>Publicar</button>
             </form>
 
             <div className={styles.commentList}>
-                <Comment/>
-                <Comment/>
-                <Comment/>
+                {comments.map((comment: string) => {
+                    return <Comment
+                        key={comment}
+                        content={comment}
+                        handleDeleteComment={handleDeleteComment}
+                    />
+                })}
             </div>
         </article>
     );

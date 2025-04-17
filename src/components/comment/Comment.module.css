@@ -40,6 +40,10 @@
     color: var(--gray-400);
 }
 
+.trash:hover {
+    color: var(--red-500);
+}
+
 .commentContent header button {
     background: transparent;
     border: none;

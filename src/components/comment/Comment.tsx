@@ -1,14 +1,21 @@
 import styles from "./Comment.module.css";
 import {ThumbsUp, Trash} from "@phosphor-icons/react";
 import {Avatar} from "../avatar/Avatar.tsx";
+import {CommentProps} from "../../shared/CommentProps.ts";
+import * as React from "react";
+import {LINK_PICTURE_PROFILE} from "../../data/mockConstants.ts";
 
-export const Comment = () => {
-    const linkPictureProfile = "http://github.com/diego3g.png"
+export const Comment = ({content, handleDeleteComment}: CommentProps) => {
+
+    function deleteComment(event: React.MouseEvent<HTMLButtonElement>) {
+        event.preventDefault()
+        handleDeleteComment(content)
+    }
 
 
     return (
         <div className={styles.comment}>
-            <Avatar hasBorder={false} src={linkPictureProfile} alt={"Profile icon"}/>
+            <Avatar hasBorder={false} src={LINK_PICTURE_PROFILE} alt={"Profile icon"}/>
             <div className={styles.commentBox}>
                 <div className={styles.commentContent}>
                     <header>
@@ -16,11 +23,15 @@ export const Comment = () => {
                             <strong>Diego</strong>
                             <time title="10 de Outubro às 08:13" dateTime="2023-10-10 08:13:30">Publicado há 1h</time>
                         </div>
-                        <button title={"Deletar comentário"}>
+                        <button
+                            title={"Deletar comentário"}
+                            className={styles.trash}
+                            onClick={deleteComment}
+                        >
                             <Trash size={20}/>
                         </button>
                     </header>
-                    <p>comemnt</p>
+                    <p>{content}</p>
                 </div>
                 <footer>
                     <button>
