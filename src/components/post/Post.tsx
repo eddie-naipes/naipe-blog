@@ -30,6 +30,7 @@ export const Post = ({author, content, publishedAt}: PostProps) => {
 
     function handleCommentChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
         event.preventDefault()
+        event.target.setCustomValidity("")
         setNewCommentText(event.target.value)
     }
 
@@ -38,6 +39,11 @@ export const Post = ({author, content, publishedAt}: PostProps) => {
         setComments([...newCList])
     }
 
+    function handleNewCommentInvalid(event: React.InvalidEvent<HTMLTextAreaElement>) {
+        event.target.setCustomValidity("Esse campo é obrigatório")
+    }
+
+    const disabled = newCommentText.trim().length === 0;
 
     return (
         <article className={styles.post}>
@@ -77,8 +83,15 @@ export const Post = ({author, content, publishedAt}: PostProps) => {
                     placeholder={"Deixe um comentário"}
                     onChange={handleCommentChange}
                     value={newCommentText}
+                    onInvalid={handleNewCommentInvalid}
+                    required
                 />
-                <button type={"submit"}>Publicar</button>
+                <button
+                    type={"submit"}
+                    disabled={disabled}
+                >
+                    Publicar
+                </button>
             </form>
 
             <div className={styles.commentList}>
