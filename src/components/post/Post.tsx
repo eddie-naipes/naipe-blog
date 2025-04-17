@@ -19,6 +19,14 @@ export const Post = ({author, content}: PostProps) => {
 
                 <a href="#">#abc</a>
             </div>
+
+            <form className={styles.commentForm}>
+                <strong>Deixe seu feedback</strong>
+                <textarea
+                    placeholder={"Deixe um comentário"}
+                />
+                    <button type={"submit"}>Publicar</button>
+            </form>
         </article>
     );
 };
