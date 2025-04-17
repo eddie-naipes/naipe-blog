@@ -1,5 +1,6 @@
 import styles from "./Post.module.css"
 import {PostProps} from "../../shared/PostProps.ts";
+import {Comment} from "../comment/Comment.tsx";
 
 export const Post = ({author, content}: PostProps) => {
     return (
@@ -25,8 +26,14 @@ export const Post = ({author, content}: PostProps) => {
                 <textarea
                     placeholder={"Deixe um comentário"}
                 />
-                    <button type={"submit"}>Publicar</button>
+                <button type={"submit"}>Publicar</button>
             </form>
+
+            <div className={styles.commentList}>
+                <Comment/>
+                <Comment/>
+                <Comment/>
+            </div>
         </article>
     );
 };
