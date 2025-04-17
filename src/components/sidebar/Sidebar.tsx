@@ -1,6 +1,7 @@
 import styles from "./Sidebar.module.css"
 import bgwhale from "../../assets/animeWhale.png"
 import {PencilLine} from "@phosphor-icons/react";
+import {Avatar} from "../avatar/Avatar.tsx";
 
 export const Sidebar = () => {
 
@@ -14,10 +15,10 @@ export const Sidebar = () => {
                 className={styles.cover}
             />
             <div className={styles.profile}>
-                <img
+                <Avatar
                     src={linkPictureProfile}
-                    alt="Picture Profile"
-                    className={styles.avatar}
+                    alt={"Profile icon"}
+                    hasBorder
                 />
                 <strong>Eddie Dias</strong>
                 <span>Web Developer</span>

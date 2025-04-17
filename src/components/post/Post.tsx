@@ -1,13 +1,22 @@
 import styles from "./Post.module.css"
 import {PostProps} from "../../shared/PostProps.ts";
 import {Comment} from "../comment/Comment.tsx";
+import {Avatar} from "../avatar/Avatar.tsx";
 
 export const Post = ({author, content}: PostProps) => {
+
+    const linkPictureProfile = "http://github.com/eddie-naipes.png"
+
     return (
         <article className={styles.post}>
             <header>
                 <div className={styles.author}>
-                    <img src="https://github.com/eddie-naipes.png" alt="" className={styles.avatar}/>
+                    <Avatar
+                        hasBorder
+                        src={linkPictureProfile}
+                        alt={"Profile icon"}
+                    />
+
                     <div className={styles.authorInfo}>
                         <strong>{author}</strong>
                         <span>Web Developer</span>
