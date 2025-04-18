@@ -4,12 +4,23 @@ import {Avatar} from "../avatar/Avatar.tsx";
 import {CommentProps} from "../../shared/CommentProps.ts";
 import * as React from "react";
 import {LINK_PICTURE_PROFILE} from "../../data/mockConstants.ts";
+import {useState} from "react";
 
 export const Comment = ({content, handleDeleteComment}: CommentProps) => {
+
+    const [like, setLike] = useState(0)
+
 
     function deleteComment(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault()
         handleDeleteComment(content)
+    }
+
+
+    function handleLikeComment() {
+        setLike((state) => {
+            return state + 1
+        })
     }
 
 
@@ -34,9 +45,9 @@ export const Comment = ({content, handleDeleteComment}: CommentProps) => {
                     <p>{content}</p>
                 </div>
                 <footer>
-                    <button>
+                    <button onClick={handleLikeComment}>
                         <ThumbsUp/>
-                        Aplaudir <span>20</span>
+                        Aplaudir <span>{like}</span>
                     </button>
                 </footer>
             </div>
